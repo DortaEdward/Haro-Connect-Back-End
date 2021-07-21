@@ -18,7 +18,6 @@ router.get('/', (req, res, next) => {
       if (err) {
             next(err);
       } else {
-        console.log(foundPosts)
         res.json({
           posts: foundPosts,
         });
