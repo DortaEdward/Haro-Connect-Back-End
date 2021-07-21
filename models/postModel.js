@@ -7,10 +7,9 @@ const postSchema = new Schema({
     required: true,
   },
   author: { type: String, required: true },
-}, {
-  timestamps: {
+  date: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 

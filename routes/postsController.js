@@ -12,24 +12,18 @@ const postSchema = Joi.object({
 });
 
 router.get('/', (req, res, next) => {
-  Posts.find({}, (err, foundPosts) => {
-    if (err) {
-      next(err);
-    } else {
-      res.json({
-        posts: foundPosts,
-      });
-    }
-  });
-});
-router.get('/resetDd', (req, res) => {
-  Posts.deleteMany({}, (err, deletedPosts) => {
-    if (err) {
-      res.send('did not work');
-    } else {
-      res.send(deletedPosts);
-    }
-  });
+  Posts.find({})
+    .sort({date: 1})
+    .exec((err, foundPosts) => {
+      if (err) {
+            next(err);
+      } else {
+        console.log(foundPosts)
+        res.json({
+          posts: foundPosts,
+        });
+      }
+    })
 });
 
 router.get('/:id', (req, res, next) => {
